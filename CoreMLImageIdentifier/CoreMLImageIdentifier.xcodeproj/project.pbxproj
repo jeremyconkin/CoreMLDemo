@@ -14,6 +14,7 @@
 		BB5669341F01D0DD0049E0B5 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5669321F01D0DB0049E0B5 /* ImagePickerViewController.swift */; };
 		BB5669351F01D0DF0049E0B5 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = BB5669331F01D0DB0049E0B5 /* Resnet50.mlmodel */; };
 		BB5669361F01D0EE0049E0B5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5669311F01D0DB0049E0B5 /* UIImage+Extension.swift */; };
+		BB5669391F01D52C0049E0B5 /* ImageAnalysisResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5669381F01D52C0049E0B5 /* ImageAnalysisResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +27,7 @@
 		BB5669311F01D0DB0049E0B5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		BB5669321F01D0DB0049E0B5 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		BB5669331F01D0DB0049E0B5 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
-		BB5669371F01D1050049E0B5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		BB5669381F01D52C0049E0B5 /* ImageAnalysisResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +62,13 @@
 			children = (
 				BB56691F1F01D07B0049E0B5 /* AppDelegate.swift */,
 				BB5669261F01D07B0049E0B5 /* Assets.xcassets */,
+				BB5669381F01D52C0049E0B5 /* ImageAnalysisResults.swift */,
 				BB5669321F01D0DB0049E0B5 /* ImagePickerViewController.swift */,
 				BB56692B1F01D07B0049E0B5 /* Info.plist */,
 				BB5669281F01D07B0049E0B5 /* LaunchScreen.storyboard */,
 				BB5669231F01D07B0049E0B5 /* Main.storyboard */,
 				BB5669331F01D0DB0049E0B5 /* Resnet50.mlmodel */,
 				BB5669311F01D0DB0049E0B5 /* UIImage+Extension.swift */,
-				BB5669371F01D1050049E0B5 /* UIImage+Extension.swift */,
 			);
 			path = CoreMLImageIdentifier;
 			sourceTree = "<group>";
@@ -146,6 +147,7 @@
 				BB5669341F01D0DD0049E0B5 /* ImagePickerViewController.swift in Sources */,
 				BB5669351F01D0DF0049E0B5 /* Resnet50.mlmodel in Sources */,
 				BB5669201F01D07B0049E0B5 /* AppDelegate.swift in Sources */,
+				BB5669391F01D52C0049E0B5 /* ImageAnalysisResults.swift in Sources */,
 				BB5669361F01D0EE0049E0B5 /* UIImage+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

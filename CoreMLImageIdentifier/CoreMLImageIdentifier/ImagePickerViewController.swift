@@ -20,6 +20,7 @@ class ImagePickerViewController : UIViewController, UINavigationControllerDelega
     /// Label describing the model's confidence
     @IBOutlet weak var confidenceLabel: UILabel!
 
+    /// Image picker to present by a user action
     private let picker = UIImagePickerController()
 
     override func viewDidLoad() {
@@ -28,6 +29,9 @@ class ImagePickerViewController : UIViewController, UINavigationControllerDelega
         picker.delegate = self
     }
 
+    /// User requested to pick a photo from a phot picker
+    ///
+    /// - Parameter sender: Button tapped to form the request
     @IBAction func photoFromLibrary(_ sender: UIBarButtonItem) {
 
         picker.allowsEditing = false
@@ -36,30 +40,24 @@ class ImagePickerViewController : UIViewController, UINavigationControllerDelega
         present(picker, animated: true, completion: nil)
     }
 
-    func analyzeImage(_ pixelBuffer: CVPixelBuffer) {
+    /// Analyze an image and show the results in the UI
+    ///
+    /// - Parameter imageForAnalysis: Image for the CoreML model to analyze
+    func analyzeImage(_ inputImage: UIImage) {
 
-        do {
-
-            let resnetModel = Resnet50()
-            
-            // Get the model's prediction
-            let output = try resnetModel.prediction(image: pixelBuffer)
-
-            // Sort results
-            let sorted = output.classLabelProbs.sorted(by: { (lhs, rhs) -> Bool in
-
-                return lhs.value > rhs.value
-            })
-
-            whatIsThisLabel.text = sorted[0].key
-
-            let confidencePercentage = String(format: "%\(0.2)f", sorted[0].value * 100)
-            confidenceLabel.text = "Confidence: \(confidencePercentage)%"
-
-        } catch {
-
-            print(error)
+        // The input image size should be 224x224 for ResNet
+        guard let resizedImage = inputImage.resize(size: CGSize(width: 224, height: 224)) else {
+            return
         }
+
+        guard let buffer = resizedImage.buffer, let analysisResults = ImageAnalysisResults.createFromPixelBuffer(buffer) else {
+            return
+        }
+
+        // Update UI from analysis results
+        whatIsThisLabel.text = analysisResults.analysisObjectType
+        let confidencePercentage = String(format: "%\(0.2)f", analysisResults.confidence * 100)
+        confidenceLabel.text = "Confidence: \(confidencePercentage)%"
     }
 }
 
@@ -71,17 +69,10 @@ extension ImagePickerViewController : UIImagePickerControllerDelegate {
             return
         }
 
-        // The input image size should be 224x224 for ResNet
-        guard let imageForAnalysis = pickedImage.resize(size: CGSize(width: 224, height: 224)) else {
-            return
-        }
-
         imageView.contentMode = .scaleAspectFit
         imageView.image = pickedImage
 
-        if let buffer = imageForAnalysis.buffer {
-            analyzeImage(buffer)
-        }
+        analyzeImage(pickedImage)
 
         dismiss(animated:true, completion: nil)
     }
